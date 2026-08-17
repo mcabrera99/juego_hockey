@@ -1,0 +1,100 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+#container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#container_botones {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.btn_luz {
+    height: 40px;
+    width: 40px;
+}
+
+#btn_1 {
+    position: absolute;
+    top: 52%;
+    left: 25.5%;
+}
+
+#btn_2 {
+    position: absolute;
+    top: 29%;
+    left: 25.5%;
+}
+
+#btn_3 {
+    position: absolute;
+    top: 8%;
+    left: 25.5%;
+}
+
+#btn_4 {
+    position: absolute;
+    top: 4%;
+    left: 48%;
+}
+
+#btn_5 {
+    position: absolute;
+    top: 52%;
+    left: 72%;
+}
+
+#btn_6 {
+    position: absolute;
+    top: 29%;
+    left: 72%;
+}
+
+#btn_7 {
+    position: absolute;
+    top: 8%;
+    left: 72%;
+}
+
+/* #arco {
+    /* border: solid 1px black */
+/* } */
+
+#control {
+    width: 50%;
+    height: 60px;
+    border: solid 1px black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#panel_estado {
+    width: 50%;
+    height: 60px;
+    border: solid 1px black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#panel_estado p{
+margin: 2px;
+}
+
+
+#btn_play{
+      height: 20px;
+      z-index: 10;
+}
