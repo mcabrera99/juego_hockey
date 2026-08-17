@@ -4,7 +4,7 @@ let intentos_restantes = 10;
 let aciertos = 0;
 let fallidos = 0;
 let ventana = false;
-let delays = Array();
+let delays;
 let delay;
 let time_init;
 let time_end;
@@ -96,6 +96,9 @@ function finalizarJuego() {
 function asignar_eventos_botones_control() {
     const btn_play = document.getElementById("btn_play")
     btn_play.addEventListener("click", ev => {
+        intentos_restantes = 10;
+        document.getElementById("span_intentos_restantes").innerHTML = `${intentos_restantes}`
+        delays = Array()
         iniciarJuego()
         asignar_eventos_botones_arco()
     })
