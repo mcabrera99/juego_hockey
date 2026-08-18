@@ -120,8 +120,8 @@ function recargarJuego() {
 
 function finalizarJuego() {
     estado_juego = estados_juego[2] // FINALIZADO
+    restaurarColorBotones()
     actualizarPanelControl()
-
 }
 
 function asignar_eventos_botones_control() {
