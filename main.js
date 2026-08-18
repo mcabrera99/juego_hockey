@@ -3,43 +3,68 @@ let numero;                         // Vble global
 let intentos_restantes = 10;
 let aciertos = 0;
 let fallidos = 0;
-let ventana = false;
+const estados_juego = ["INICIO", "ENJUEGO", "FINALIZADO"]
+let estado_juego;
 let delays;
 let delay;
 let time_init;
 let time_end;
 
-function iniciarJuego() {
-    numero = obtenerNumero(numeros)
+function restaurarValoresGlobales() {
+    intentos_restantes = 10;
+    aciertos = 0;
+    fallidos = 0;
+    delays = Array()
+}
+
+function cargarJuego() {
+    estado_juego = estados_juego[0]
+    restaurarValoresGlobales()
     restaurarColorBotones()
-    encenderBoton(numero)
-    ventana = true
-    time_init = new Date(Date.now());
+    document.getElementById("span_intentos_restantes").innerHTML = `${intentos_restantes}`
+    document.getElementById("span_delay_promedio").innerHTML = `...`
+}
+
+function iniciarJuego() {
+    console.log(estado_juego)
+    if (estado_juego != estados_juego[2]) {
+        estado_juego = estados_juego[1]
+        console.log("intentos_restantes", intentos_restantes)
+        numero = obtenerNumero(numeros)
+        restaurarColorBotones()
+        encenderBoton(numero)
+        time_init = new Date(Date.now());
+    }
+
 }
 
 function asignar_eventos_botones_arco() {
     const lista = document.querySelectorAll(".btn_luz")
     for (const btn of lista) {
         btn.addEventListener("click", ev => {
-            intentos_restantes -= 1;
-            if (validar(btn.id)) {
-                sumarAciertos()
-                time_end = new Date(Date.now());
-                delay = time_end - time_init
-                delays.push(delay)
-                console.log(obtenerPromedio(delays))
-                console.log(delays)
-                document.getElementById("span_intentos_restantes").innerHTML = `${intentos_restantes}`
-                document.getElementById("span_delay_promedio").innerHTML = `${obtenerPromedio(delays)}`
-            } else {
-                sumarFallidos()
+            if (estado_juego == estados_juego[1]) {
+                console.log(estado_juego)
+                intentos_restantes -= 1;
+                console.log("intentos disminuido")
+                if (validar(btn.id)) {
+                    sumarAciertos()
+                    time_end = new Date(Date.now());
+                    delay = time_end - time_init
+                    delays.push(delay)
+                    console.log(obtenerPromedio(delays))
+                    console.log(delays)
+                } else {
+                    sumarFallidos()
+                }
+
+                if (intentos_restantes > 0) {
+                    reiniciarJuego()
+                } else {
+                    finalizarJuego()
+                }
+                actualizarPanelControl()
             }
 
-            if (intentos_restantes > 0) {
-                reiniciarJuego()
-            } else {
-                finalizarJuego()
-            }
 
 
         })
@@ -89,29 +114,43 @@ function reiniciarJuego() {
     iniciarJuego()
 }
 
+function recargarJuego() {
+    cargarJuego()
+}
+
 function finalizarJuego() {
-    restaurarColorBotones()
+    estado_juego = estados_juego[2] // FINALIZADO
+    actualizarPanelControl()
+
 }
 
 function asignar_eventos_botones_control() {
     const btn_play = document.getElementById("btn_play")
     btn_play.addEventListener("click", ev => {
-        intentos_restantes = 10;
-        document.getElementById("span_intentos_restantes").innerHTML = `${intentos_restantes}`
-        delays = Array()
-        iniciarJuego()
-        asignar_eventos_botones_arco()
+        if (estado_juego == estados_juego[0]){
+            iniciarJuego()
+        }
+    })
+    const btn_reload = document.getElementById("btn_reload")
+    btn_reload.addEventListener("click", ev => {
+        recargarJuego()
     })
 }
 
-function obtenerPromedio(array){
+function obtenerPromedio(array) {
     let suma = 0.0;
     let len = array.length;
-    for (const num of array){
+    for (const num of array) {
         suma = suma + num
     }
     return suma / len
 }
 
-document.getElementById("span_intentos_restantes").innerHTML = `${intentos_restantes}`
+function actualizarPanelControl() {
+    document.getElementById("span_intentos_restantes").innerHTML = `${intentos_restantes}`
+    document.getElementById("span_delay_promedio").innerHTML = `${obtenerPromedio(delays)}`
+}
+
+cargarJuego()
+asignar_eventos_botones_arco()
 asignar_eventos_botones_control()

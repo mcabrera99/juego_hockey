@@ -93,8 +93,15 @@ body {
 margin: 2px;
 }
 
-
+.btn_control{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 #btn_play{
+      height: 20px;
+      z-index: 10;
+}
+#btn_reload{
       height: 20px;
       z-index: 10;
 }
