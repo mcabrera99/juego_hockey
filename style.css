@@ -18,7 +18,7 @@ body {
     position: absolute;
 }
 
-#container img{
+#container img {
     margin: 20px;
     border: 1px solid black;
 }
@@ -26,49 +26,47 @@ body {
 .btn_luz {
     height: 40px;
     width: 40px;
+    font-weight: bold;
+    position: absolute;
 }
 
 #btn_1 {
-    position: absolute;
     top: 52%;
     left: 25.5%;
 }
 
 #btn_2 {
-    position: absolute;
     top: 29%;
     left: 25.5%;
 }
 
 #btn_3 {
-    position: absolute;
     top: 8%;
     left: 25.5%;
 }
 
 #btn_4 {
-    position: absolute;
-    top: 4%;
+    top: 8%;
     left: 48%;
 }
 
 #btn_5 {
-    position: absolute;
-    top: 52%;
+    top: 8%;
     left: 72%;
 }
 
 #btn_6 {
-    position: absolute;
     top: 29%;
     left: 72%;
 }
 
 #btn_7 {
-    position: absolute;
-    top: 8%;
+    top: 52%;
     left: 72%;
 }
+
+
+
 
 /* #arco {
     /* border: solid 1px black */
@@ -95,19 +93,21 @@ body {
     align-items: center;
 }
 
-#panel_estado p{
-margin: 2px;
+#panel_estado p {
+    margin: 2px;
 }
 
-.btn_control{
+.btn_control {
     margin-left: 10px;
     margin-right: 10px;
 }
-#btn_play{
-      height: 20px;
-      z-index: 10;
+
+#btn_play {
+    height: 20px;
+    z-index: 10;
 }
-#btn_reload{
-      height: 20px;
-      z-index: 10;
+
+#btn_reload {
+    height: 20px;
+    z-index: 10;
 }
